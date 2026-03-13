@@ -161,10 +161,10 @@ a { color:inherit; text-decoration:none }
       <li class="nav-item sub"><a href="#unipersonales">↳ Inspección de servicios</a></li>
       <li class="nav-item sub"><a href="#unipersonales">↳ Asesores</a></li>
       <li class="nav-item sub"><a href="#unipersonales">↳ Directores</a></li>
-      <li class="nav-item sub"><a href="#unipersonales">↳ Regalos institucionales</a></li>
-      <li class="nav-item sub"><a href="#unipersonales">↳ Viajes y dietas</a></li>
-      <li class="nav-item sub"><a href="#unipersonales">↳ Seguro personal directivo</a></li>
-      <li class="nav-item sub"><a href="#unipersonales">↳ Titulaciones</a></li>
+      <li class="nav-item sub"><a href="#regalos">↳ Regalos institucionales</a></li>
+      <li class="nav-item sub"><a href="#viajes">↳ Viajes y dietas</a></li>
+      <li class="nav-item sub"><a href="#seguro">↳ Seguro personal directivo</a></li>
+      <li class="nav-item sub"><a href="#titulaciones">↳ Titulaciones</a></li>
       <li class="nav-divider"></li>
       <li class="nav-item"><a href="#colegiados"><span class="nav-num">2</span> Órganos colegiados</a></li>
       <li class="nav-item sub"><a href="#colegiados">↳ Consejo Social</a></li>
@@ -253,32 +253,28 @@ a { color:inherit; text-decoration:none }
           <div class="section-label">Información complementaria del equipo de gobierno</div>
           <div class="cards-grid cols-4" style="padding-bottom:20px">
 
-            <div class="card">
-              <div class="card-title">Regalos institucionales</div>
+            <div class="card" id="regalos">
               <div class="card-desc">Registro de obsequios recibidos por los cargos de gobierno.</div>
               <div class="card-actions">
                 <a href="https://www.ucm.es/portaldetransparencia/regalos" class="btn btn-rojo" target="_blank" rel="noopener" aria-label="Ver regalos institucionales">Ver →</a>
               </div>
             </div>
 
-            <div class="card">
-              <div class="card-title">Viajes, dietas y gastos derivados</div>
+            <div class="card" id="viajes">
               <div class="card-desc">Gastos en desplazamientos y dietas del equipo rectoral.</div>
               <div class="card-actions">
                 <a href="https://www.ucm.es/portaldetransparencia/viajes-dietas" class="btn btn-rojo" target="_blank" rel="noopener" aria-label="Ver viajes, dietas y gastos derivados">Ver →</a>
               </div>
             </div>
 
-            <div class="card">
-              <div class="card-title">Seguro personal directivo</div>
+            <div class="card" id="seguro">
               <div class="card-desc">Información sobre la protección social de los directivos de la UCM.</div>
               <div class="card-actions">
                 <a href="https://www.ucm.es/portaldetransparencia/proteccion-social-directivos" class="btn btn-rojo" target="_blank" rel="noopener" aria-label="Ver seguro personal directivo">Ver →</a>
               </div>
             </div>
 
-            <div class="card">
-              <div class="card-title">Titulaciones del Consejo de Dirección</div>
+            <div class="card" id="titulaciones">
               <div class="card-desc">Acreditaciones académicas de los miembros del equipo rectoral.</div>
               <div class="card-actions">
                 <a href="https://www.ucm.es/portaldetransparencia/titulaciones" class="btn btn-rojo" target="_blank" rel="noopener" aria-label="Ver titulaciones del Consejo de Dirección">Ver →</a>
@@ -385,12 +381,13 @@ function openFromHash() {
   if (!id) return;
   const target = document.getElementById(id);
   if (!target) return;
-  const section = target.closest('.section') || target;
-  if (section.classList.contains('section')) {
+  // Open the closest parent section (the target itself or an ancestor)
+  const section = target.classList.contains('section') ? target : target.closest('.section');
+  if (section) {
     section.classList.add('open');
     section.querySelector('.section-hdr')?.setAttribute('aria-expanded', 'true');
-    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   }
+  setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
 }
 window.addEventListener('hashchange', openFromHash);
 openFromHash();
